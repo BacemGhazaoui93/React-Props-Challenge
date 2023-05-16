@@ -1,25 +1,41 @@
 import logo from './logo.svg';
 import './App.css';
+import Cart from './Components/Cart';
+import ItemList from './Components/ItemList';
 
+
+
+const products = [
+  {
+    image: 'Product.png',
+    name: 'Product 1',
+    price: '9 Dt',
+  },
+  {
+    image: 'Product.png',
+    name: 'Product 2',
+    price: '19 Dt',
+  },
+  {
+    image: 'Product.png',
+    name: 'Product 3',
+    price: '99 Dt',
+  },
+];
 function App() {
+  const alertProduct = (product) => {
+    alert(`Added ${product.name} to cart!`);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ItemList products={products} />
+      <div className="cart-list">
+        {products.map((product, index) => (
+          <Cart key={index} product={product} onAddToCart={alertProduct} />
+        ))}
+      </div>
+    </>
   );
 }
-
 export default App;
